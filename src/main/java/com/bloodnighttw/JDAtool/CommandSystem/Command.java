@@ -1,12 +1,7 @@
 package com.bloodnighttw.JDAtool.CommandSystem;
 
-import com.bloodnighttw.JDAtool.MusicSystem.command.NowPlayingCommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import sun.security.smartcardio.SunPCSC;
 
-import java.util.HashMap;
 
 
     public abstract class Command{
