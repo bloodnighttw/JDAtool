@@ -11,7 +11,7 @@ import java.util.HashMap;
 
     public abstract class Command{
 
-        private Logger log;//= LoggerFactory.getLogger(this.getClass());
+        //private Logger log;//= LoggerFactory.getLogger(this.getClass());
 
         //public static HashMap hMap=new HashMap<String,Command>();
 
@@ -20,13 +20,6 @@ import java.util.HashMap;
         public abstract String getDescription();
 
         public abstract void onCommand(GuildMessageReceivedEvent e, String[] args);
-
-        protected Logger getLogger(Class<? extends NowPlayingCommand> classname){
-            if(log==null)
-                log= LoggerFactory.getLogger(classname);
-
-            return log;
-        }
 
     }
 

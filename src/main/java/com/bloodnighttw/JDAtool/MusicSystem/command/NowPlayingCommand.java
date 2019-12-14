@@ -26,7 +26,7 @@ public class NowPlayingCommand  extends Command {
     @Override
     public void onCommand(GuildMessageReceivedEvent e, String[] args) {
         PlayerManager pm=PlayerManager.getInstance();
-        super.getLogger(this.getClass()).info("using =np");
+
 
         EmbedBuilder emb=new EmbedBuilder();
 
