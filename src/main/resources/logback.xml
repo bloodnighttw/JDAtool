@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[ %d{HH:mm:ss} ][ %boldCyan(%-23.-23thread)]  %boldGreen(%-25.-25logger{0}) %highlight(%-6level) %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <property name="DEV_HOME" value="c:/logs" />
+    <appender name="FILE" class="ch.qos.logback.classic.sift.SiftingAppender">
+
+        <discriminator>
+            <key>logName</key>
+            <defaultValue>test</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${logName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>D:/tmp/${logName}.log</file>
+                <append>false</append>
+                <encoder  class="ch.qos.logback.classic.PatternLayout">
+                    <pattern>%d [%thread] %level %mdc %logger{35} - %msg%n</pattern>
+                </encoder>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                    <FileNamePattern>${DEV_HOME}/${logName}.%i.log.zip
+                    </FileNamePattern>
+                    <MinIndex>1</MinIndex>
+                    <MaxIndex>10</MaxIndex>
+                </rollingPolicy>
+                <triggeringPolicy
+                        class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                    <MaxFileSize>10MB</MaxFileSize>
+                </triggeringPolicy>
+            </appender>
+        </sift>
+    </appender>
+
+    <root level="ALL">
+        <appender-ref ref="FILE" />
+    </root>
+
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

@@ -6,11 +6,12 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TrackScheduler extends AudioEventAdapter {
 
     private final AudioPlayer player;
-    private final LinkedList<AudioTrack> trackList;
+    private final Queue<AudioTrack> trackList;
     private boolean enableLoop=false;
 
     public TrackScheduler(AudioPlayer player){
@@ -25,7 +26,15 @@ public class TrackScheduler extends AudioEventAdapter {
 
     public void nextTrack(){
         if(!enableLoop)
-            player.startTrack(trackList.remove(),false);
+            player.startTrack(trackList.poll(),false);
+    }
+
+    public void delAll(){
+        trackList.clear();
+    }
+
+    public Queue<AudioTrack> getList(){
+        return trackList;
     }
 
     @Override
@@ -33,8 +42,6 @@ public class TrackScheduler extends AudioEventAdapter {
         if (endReason.mayStartNext) {
             nextTrack();
         }
+
     }
-
-
-
 }

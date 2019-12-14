@@ -1,8 +1,7 @@
 package com.bloodnighttw.JDAtool.Demo;
 
 import com.bloodnighttw.JDAtool.CommandSystem.CommandManager;
-import com.bloodnighttw.JDAtool.MusicSystem.command.JoinCommand;
-import com.bloodnighttw.JDAtool.MusicSystem.command.LeaveCommand;
+import com.bloodnighttw.JDAtool.MusicSystem.command.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -13,13 +12,21 @@ public class Main {
 
     public static void main(String[] args) throws LoginException {
 
-        JDA jda=new JDABuilder("NDc5OTg1NDI1MTUxNDI2NTcz.Xexr-w.hGalha8xj6itDMaPJQ1UQEiu1jw").build();
+        JDA jda=new JDABuilder(Token.getToken()).build();
         jda.getPresence().setActivity(Activity.playing("=JDATool=撰寫中"));
 
         CommandManager cm=new CommandManager(jda);
 
         cm.addCommand(new JoinCommand());
         cm.addCommand(new LeaveCommand());
+        cm.addCommand(new PlayCommand());
+        cm.addCommand(new pauseCommand());
+        cm.addCommand(new StopCommand());
+        cm.addCommand(new NowPlayingCommand());
+        cm.addCommand(new skipCommand());
+        cm.addCommand(new pCommand());
+
+
 
         cm.close();
     }
