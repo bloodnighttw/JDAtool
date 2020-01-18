@@ -7,34 +7,7 @@
         </encoder>
     </appender>
 
-    <property name="DEV_HOME" value="c:/logs" />
-    <appender name="FILE" class="ch.qos.logback.classic.sift.SiftingAppender">
 
-        <discriminator>
-            <key>logName</key>
-            <defaultValue>test</defaultValue>
-        </discriminator>
-        <sift>
-            <appender name="FILE-${logName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
-                <file>D:/tmp/${logName}.log</file>
-                <append>false</append>
-                <encoder  class="ch.qos.logback.classic.PatternLayout">
-                    <pattern>%d [%thread] %level %mdc %logger{35} - %msg%n</pattern>
-                </encoder>
-                <rollingPolicy
-                        class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-                    <FileNamePattern>${DEV_HOME}/${logName}.%i.log.zip
-                    </FileNamePattern>
-                    <MinIndex>1</MinIndex>
-                    <MaxIndex>10</MaxIndex>
-                </rollingPolicy>
-                <triggeringPolicy
-                        class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-                    <MaxFileSize>10MB</MaxFileSize>
-                </triggeringPolicy>
-            </appender>
-        </sift>
-    </appender>
 
     <root level="ALL">
         <appender-ref ref="FILE" />
